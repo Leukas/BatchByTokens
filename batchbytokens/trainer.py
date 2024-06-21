@@ -64,7 +64,7 @@ class BBTTrainer(Seq2SeqTrainer):
         return NLPSampler(self.train_dataset, self.args.tokens_per_batch, dec_only_model=not self.is_enc_dec_model)
     
     def _get_eval_sampler(self, eval_dataset) -> Sampler:
-        NLPEvalSampler(eval_dataset, self.args.tokens_per_batch, dec_only_model=not self.is_enc_dec_model)
+        return NLPEvalSampler(eval_dataset, self.args.tokens_per_batch, dec_only_model=not self.is_enc_dec_model)
          
     def get_train_dataloader(self) -> DataLoader:
         train_dataset = self.train_dataset
