@@ -17,7 +17,7 @@ if TYPE_CHECKING:
     from transformers.training_args import TrainingArguments
 
 
-from sampling import NLPSampler, NLPEvalSampler
+from .sampling import NLPSampler, NLPEvalSampler
 
 logger = logging.get_logger(__name__)
 

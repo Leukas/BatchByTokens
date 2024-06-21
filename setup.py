@@ -34,7 +34,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/leukas/batchbytokens",
-    packages=find_packages(),
+    packages=find_packages(include=["batchbytokens"]),
     classifiers=[
         "Programming Language :: Python :: 3",
         "Operating System :: OS Independent",
