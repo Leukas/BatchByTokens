@@ -21,7 +21,7 @@ from .sampling import NLPSampler, NLPEvalSampler
 
 logger = logging.get_logger(__name__)
 
-class Seq2SeqTrainerCollate(Seq2SeqTrainer):
+class BBTTrainer(Seq2SeqTrainer):
     def __init__(
             self,
             model: Union["PreTrainedModel", nn.Module] = None,
