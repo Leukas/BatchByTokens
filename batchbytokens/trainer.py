@@ -37,6 +37,7 @@ class BBTTrainer(Seq2SeqTrainer):
             optimizers: Tuple[torch.optim.Optimizer, torch.optim.lr_scheduler.LambdaLR] = (None, None),
             preprocess_logits_for_metrics: Optional[Callable[[torch.Tensor, torch.Tensor], torch.Tensor]] = None,
         ):
+            self.args = args
             self.args.tokens_per_batch = args.per_device_train_batch_size
             self.args.per_device_eval_batch_size = 1
             self.args.per_device_train_batch_size = 1
