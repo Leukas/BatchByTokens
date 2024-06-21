@@ -1,5 +1,6 @@
 # trainer.py
 from typing import TYPE_CHECKING, Callable, Dict, List, Optional, Tuple, Union
+from functools import partial
 
 import torch
 from torch import nn
@@ -17,7 +18,7 @@ if TYPE_CHECKING:
     from transformers.training_args import TrainingArguments
 
 
-from .sampling import NLPSampler, NLPEvalSampler
+from .sampling import NLPSampler, NLPEvalSampler, prep_batch_for_collating
 
 logger = logging.get_logger(__name__)
 
@@ -40,10 +41,13 @@ class BBTTrainer(Seq2SeqTrainer):
             self.args.per_device_eval_batch_size = 1
             self.args.per_device_train_batch_size = 1
             self.is_enc_dec_model = hasattr(model, 'encoder')
+
+            collate_fn = partial(prep_batch_for_collating, collate_fn=data_collator)
+
             super().__init__(
                 model=model,
                 args=args,
-                data_collator=data_collator,
+                data_collator=collate_fn,
                 train_dataset=train_dataset,
                 eval_dataset=eval_dataset,
                 tokenizer=tokenizer,
